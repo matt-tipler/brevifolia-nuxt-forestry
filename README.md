@@ -10,7 +10,7 @@
 <h1 align="center">
   Brevifolia
 </h1>
- 
+
 ## About
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/97aa0f61-0fe8-4859-a1b7-d7bcaabc0e5f/deploy-status)](https://app.netlify.com/sites/brevifolia-nuxt-forestry/deploys)
