@@ -1,40 +1,57 @@
-name: Node.js CI
+# name: Node.js CI
+
+# on:
+#   push:
+#     branches: 
+#       - master
+#   pull_request:
+#     branches:
+#       - master
+
+# jobs:
+#   build:
+
+#     runs-on: self-hosted
+
+#     strategy:
+#       matrix:
+#         node-version: [12.x]
+
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#     - run: npm i
+#     - run: npm run build
+#     - name: Firebase deploy
+#       uses: FirebaseExtended/action-hosting-deploy@v0
+#       with:
+#         repoToken: "${{ secrets.GITHUB_TOKEN }}"
+#         firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TANGO3TEST }}"
+#         expires: 1d
+#         projectId: tango3-test
+#     - run: firebase hosting:channel:deploy preview --project tango3-test
+    
+name: Deploy to Firebase Preview Channel
 
 on:
-  push:
-    branches: 
-      - master
   pull_request:
-    branches:
-      - master
+    # Optionally configure to run only for specific files. For example:
+    # paths:
+    # - "website/**"
 
 jobs:
-  build:
-
+  build_and_preview:
     runs-on: self-hosted
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-
     steps:
-    - uses: actions/checkout@v2
-    # - name: Use Node.js ${{ matrix.node-version }}
-    #   uses: actions/setup-node@v1
-    #   with:
-    #     node-version: ${{ matrix.node-version }}
-    # - run: npm i
-    # - run: npm run build
-
-    # - name: Firebase deploy
-    - run: npm i
-    - run: npm run build
-    - uses: FirebaseExtended/action-hosting-deploy@v0
-      with:
-        repoToken: "${{ secrets.GITHUB_TOKEN }}"
-        firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TANGO3TEST }}"
-        expires: 1d
-        projectId: tango3-test
-    # - run: firebase hosting:channel:deploy preview
-    
-    
+      - uses: actions/checkout@v2
+      # Add any build steps here. For example:
+      - run: npm i && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TANGO3TEST }}"
+          expires: 1d
+          projectId: tango3-test
