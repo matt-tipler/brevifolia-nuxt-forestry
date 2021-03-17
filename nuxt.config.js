@@ -70,9 +70,11 @@ export default {
       }
     }    
   },
+  buildDir: '_dist',
   generate: {
     routes: dynamicRoutes
-  }
+  },
+  target: 'static'
 }
 /**
  * Create an array of URLs from a list of files
