@@ -62,6 +62,12 @@ export default {
           loader: "frontmatter-markdown-loader",
           include: path.resolve(__dirname, "content/blog-posts")
       })
+    },
+    hotMiddleware: {
+      client: {
+        // turn off client overlay when errors are present
+        overlay: false
+      }
     }    
   },
   generate: {
