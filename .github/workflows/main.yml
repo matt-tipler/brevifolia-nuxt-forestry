@@ -62,3 +62,4 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TANGO3TEST }}"
           expires: 1d
           projectId: tango3-test
+          channelId: testing
