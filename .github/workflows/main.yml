@@ -41,6 +41,9 @@ on:
     # Optionally configure to run only for specific files. For example:
     # paths:
     # - "website/**"
+  push:
+    branches: 
+      - master
 
 jobs:
   build_and_preview:
